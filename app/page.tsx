@@ -1,15 +1,41 @@
-import Link from "next/link";
+"use client";
+
+import { supabase } from "@/lib/supabase";
 
 export default function Home() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-      <h1 className="text-3xl font-bold">
-        Sistema de Personal
-      </h1>
+  const addEmployee = async () => {
+    const { data, error } = await supabase
+      .from("employees")
+      .insert([
+        {
+          full_name: "Juan Pérez",
+          cedula: "1720000000",
+          position: "Vendedor",
+          monthly_salary: 500,
+          start_date: "2026-04-25",
+          status: "active",
+        },
+      ])
+      .select();
 
-      <Link href="/login" className="text-blue-500 underline">
-        Ir al Login
-      </Link>
+    if (error) {
+      console.error("SUPABASE ERROR:", JSON.stringify(error, null, 2));
+      alert("Error: " + error.message);
+      return;
+    }
+
+    console.log("EMPLOYEE CREATED:", data);
+    alert("Empleado creado");
+  };
+
+  return (
+    <div className="p-10">
+      <button
+        onClick={addEmployee}
+        className="bg-black text-white p-3 rounded"
+      >
+        Add Employee
+      </button>
     </div>
   );
 }
