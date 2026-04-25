@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
 type Employee = {
   id: string;
@@ -44,7 +45,9 @@ export default function EmployeesPage() {
   return (
     <div className="p-10">
       <h1 className="text-2xl font-bold mb-6">Empleados</h1>
-
+      <Link href="/employees/new" className="inline-block mb-4 bg-black text-white px-4 py-2 rounded">
+        + Nuevo empleado
+      </Link>
       <table className="w-full border">
         <thead>
           <tr className="bg-gray-100">
