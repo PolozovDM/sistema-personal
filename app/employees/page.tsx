@@ -51,6 +51,7 @@ export default function EmployeesPage() {
       <table className="w-full border">
         <thead>
           <tr className="bg-gray-100">
+            <th className="border p-2 text-left">Acciones</th>
             <th className="border p-2 text-left">Nombre</th>
             <th className="border p-2 text-left">Cédula</th>
             <th className="border p-2 text-left">Cargo</th>
@@ -63,6 +64,11 @@ export default function EmployeesPage() {
         <tbody>
           {employees.map((employee) => (
             <tr key={employee.id}>
+              <td className="border p-2">
+                <Link href={`/employees/${employee.id}`} className="text-blue-600 underline">
+                  Ver
+                </Link>
+              </td>
               <td className="border p-2">{employee.full_name}</td>
               <td className="border p-2">{employee.cedula}</td>
               <td className="border p-2">{employee.position}</td>
