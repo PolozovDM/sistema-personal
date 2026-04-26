@@ -87,12 +87,14 @@ export default function EmployeeProfilePage() {
           Editar
         </Link>
 
-        <Link
-          href={`/employees/${employee.id}/terminate`}
-          className="bg-red-600 text-white px-4 py-2 rounded"
-        >
-          Terminar relación laboral
-        </Link>
+        {employee.status === "active" && (
+          <Link
+            href={`/employees/${employee.id}/terminate`}
+            className="bg-red-600 text-white px-4 py-2 rounded"
+          >
+            Terminar relación laboral
+          </Link>
+        )}
       </div>
     </div>
   );
